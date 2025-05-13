@@ -14,6 +14,26 @@ public class SpamDetector {
         String caminho = "C:\\Users\\Public\\Desktop\\Email.txt"; 
         String conteudo = leitor.lerArquivo(caminho);
 
+
+        System.out.println("Pontuação final (inteira): " + peso);
+
+        int peso = Verificar(conteudo);
+
+        if (peso > 70) {
+            System.out.println("Este e-mail é fortemente considerado SPAM.");
+        } 
+        else if (peso >= 31 && peso <= 70) {
+            System.out.println("Este e-mail é potêncialmente considerado SPAM.");
+        }
+        else if (peso >= 5 && peso <31){
+            System.out.println("Este e-mail é fracamente considerado SPAM.");
+        }
+        else{
+            System.out.println("Este e-mail não é considerado SPAM");
+        }
+    }
+
+    public int Verificar(conteudo){
         String[][] matriz = {
             {"oferta", "0.9"},
             {"grátis", "0.85"},
@@ -36,22 +56,7 @@ public class SpamDetector {
             if (conteudoLower.contains(palavra)) {
                 peso += pesoInt;
             }
+            return pesoInt;
         }
-
-        System.out.println("Pontuação final (inteira): " + peso);
-
-
-        if (peso > 70) {
-            System.out.println("Este e-mail é fortemente considerado SPAM.");
-        } 
-        else if (peso >= 31 && peso <= 70) {
-            System.out.println("Este e-mail é potêncialmente considerado SPAM.");
-        }
-        else if (peso >= 5 && peso <31){
-            System.out.println("Este e-mail é fracamente considerado SPAM.");
-        }
-        else{
-            System.out.println("Este e-mail não é considerado SPAM");
-        }
-    }
+    } 
 }
